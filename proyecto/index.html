@@ -1,0 +1,219 @@
+<!--ivan clavijo-->
+<!--thomas avila-->
+<!--david giovanny vargas-->
+<!--david sopo-->
+<!--3147272-->
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ecomarket</title>
+  <!--BOOTSTRAP-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Modal Carrito -->
+  <div id="modalCarrito" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarCarrito()">×</span>
+      <h3>🛒 Tu carrito</h3>
+      <div id="listaCarrito"></div>
+      <button onclick="finalizarCompra()">Finalizar compra</button>
+    </div>
+  </div>
+
+  <!-- Perfil del usuario y navegación -->
+  <div class="sidebar">
+    <div id="perfilUsuario" style="text-align: center; display: none; padding: 10px;">
+      <img id="fotoPerfil" src="" alt="Foto perfil" class="img-perfil"><br>
+      <strong id="nombreUsuario" style="color: white;"></strong>
+      <button onclick="document.getElementById('modalEditarPerfil').style.display='flex'">Editar perfil</button>
+    </div>
+    <button id="btnLogin" onclick="document.getElementById('modalLogin').style.display='flex'">👤Iniciar sesión</button>
+    <button id="btnRegister" onclick="document.getElementById('modalCrearCuenta').style.display='flex'">👤Crear cuenta</button>
+    <button id="btnLogout" onclick="cerrarSesion()" style="display: none;">🔙Cerrar sesión</button>
+    <a href="#" onclick="mostrarSeccion('inicio')">Inicio</a>
+    <a href="#" onclick="mostrarSeccion('productos')">Productos</a>
+    <a href="#" onclick="mostrarSeccion('ofertas')">Ofertas</a>
+    <a href="#" onclick="mostrarSeccion('contacto')">Contacto</a>
+  </div>
+
+  <div class="main">
+    <!-- INICIO -->
+    <div id="seccion-inicio" class="seccion">
+      <div class="banner">
+        <img src="../img/Tetra-pak-Biodiversity-Banner-GIF-animated.gif" alt="Banner" class="banner-img">
+        <div class="banner-text" style="display: flex;">Ecomarket</div>
+      </div>
+      <h2>Bienvenido a Ecomarket</h2>
+      <p>Tu tienda ecológica y tecnológica. Explora nuestras categorías de productos diseñados para un estilo de vida
+        sostenible.</p>
+    </div>
+
+    <!-- PRODUCTOS -->
+    <div id="seccion-productos" class="seccion" style="display: none;">
+      <h2>🎧 Nuestros Productos</h2>
+      <div class="productos-grid">
+        <div class="producto" onclick="seleccionarProducto('Sony WH-1000XM4')">
+          <img src="../img/Imagen de WhatsApp 2025-07-01 a las 11.46.56_a11a74c4.jpg" alt="Sony WH-1000XM4">
+          <h4>Sony WH-1000XM4</h4>
+          <p>$299.99 - Cancelación de ruido</p>
+        </div>
+        <div class="producto" onclick="seleccionarProducto('Bose QC45')">
+          <img src="../img/Imagen de WhatsApp 2025-07-01 a las 11.47.15_8e42548c.jpg" alt="Bose QC45">
+          <h4>Bose QuietComfort 45</h4>
+          <p>$279.99 - Sonido envolvente</p>
+        </div>
+        <div class="producto" onclick="seleccionarProducto('JBL Tune 500BT')">
+          <img src="../img/Imagen de WhatsApp 2025-07-01 a las 11.47.30_ae852845.jpg" alt="JBL Tune 500BT">
+          <h4>JBL Tune 500BT</h4>
+          <p>$49.99 - Sonido JBL Pure Bass</p>
+        </div>
+        <div class="producto" onclick="seleccionarProducto('AirPods Pro')">
+          <img src="../img/Imagen de WhatsApp 2025-07-01 a las 11.52.42_01ee5cd0.jpg" alt="AirPods Pro">
+          <h4>Apple AirPods Pro</h4>
+          <p>$249.99 - Cancelación activa</p>
+        </div>
+      </div>
+      <button class="ver-mas-btn" onclick="abrirModalProductos()">Ver más</button>
+    </div>
+
+    <!-- Modal Ver Más Productos -->
+    <div class="modal" id="modalProductos">
+      <div class="modal-content">
+        <span class="close" onclick="cerrarModalProductos()">×</span>
+        <h3>Todos los Audífonos</h3>
+        <div class="modal-productos">
+          <div class="productos-grid">
+            <div class="producto" onclick="seleccionarProducto('Sony WH-1000XM4')">
+              <img src="../img/Imagen de WhatsApp 2025-07-01 a las 11.46.56_a11a74c4.jpg" alt="Sony WH-1000XM4">
+              <h4>Sony WH-1000XM4</h4>
+              <p>$299.99 - Cancelación de ruido</p>
+            </div>
+            <div class="producto" onclick="seleccionarProducto('Bose QC45')">
+              <img src="../img/Imagen de WhatsApp 2025-07-01 a las 11.47.15_8e42548c.jpg" alt="Bose QC45">
+              <h4>Bose QuietComfort 45</h4>
+              <p>$279.99 - Sonido envolvente</p>
+            </div>
+            <div class="producto" onclick="seleccionarProducto('JBL Tune 500BT')">
+              <img src="../img/Imagen de WhatsApp 2025-07-01 a las 11.47.30_ae852845.jpg" alt="JBL Tune 500BT">
+              <h4>JBL Tune 500BT</h4>
+              <p>$49.99 - Sonido JBL Pure Bass</p>
+            </div>
+            <div class="producto" onclick="seleccionarProducto('AirPods Pro')">
+              <img src="../img/Imagen de WhatsApp 2025-07-01 a las 11.52.42_01ee5cd0.jpg" alt="AirPods Pro">
+              <h4>Apple AirPods Pro</h4>
+              <p>$249.99 - Cancelación activa</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OFERTAS -->
+    <div id="seccion-ofertas" class="seccion" style="display: none;">
+      <h2>🔥 Ofertas Especiales</h2>
+      <div class="oferta">20% de descuento en audífonos Sony hasta el 10 de julio</div>
+      <div class="oferta">Combo JBL: Compra 2 y paga 1</div>
+      <div class="oferta">Envío gratis por compras superiores a $150.000</div>
+    </div>
+
+    <!-- CONTACTO -->
+    <div id="seccion-contacto" class="seccion" style="display: none;">
+      <h2>📞 Contáctanos</h2>
+      <p>¿Tienes preguntas? Estamos para ayudarte.</p>
+      <ul>
+        <li>Email: contacto@ecomarket.com</li>
+        <li>Teléfono: +57 320 000 0000</li>
+        <li>Dirección: Calle 123 #45-67, Bogotá</li>
+      </ul>
+      <form class="formulario-contacto">
+        <input type="text" placeholder="Tu nombre" required>
+        <input type="email" placeholder="Tu correo" required>
+        <textarea placeholder="Escribe tu mensaje..." required></textarea>
+        <button type="submit">Enviar mensaje</button>
+      </form>
+    </div>
+
+    <!-- Tetris -->
+    <iframe id="tetris-container" src="https://tetris.com/play-tetris" frameborder="0" style="display: none;"></iframe>
+  </div>
+
+  <!-- Botones flotantes -->
+  <button class="float-btn cart-btn" onclick="abrirCarrito()">🛒</button>
+  <button class="float-btn game-btn" onclick="abrirMenuJuegos()">🎮</button>
+
+  <!-- Menú de Juegos y Escáner -->
+  <div id="menu-juegos" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarMenuJuegos()">×</span>
+      <h3>¿Qué deseas abrir?</h3>
+      <button onclick="abrirEscaner()">📷 Escáner</button>
+      <button onclick="toggleTetris()">🎮 Jugar Tetris</button>
+    </div>
+  </div>
+
+  <!-- Modales para login, registro y editar perfil -->
+  <div class="modal" id="modalLogin">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModal('modalLogin')">×</span>
+      <h3>Iniciar sesión</h3>
+      <input type="email" id="loginEmail" placeholder="Tu correo">
+      <input type="password" id="loginPassword" placeholder="Tu contraseña">
+      <button onclick="iniciarSesion()">Entrar</button>
+    </div>
+  </div>
+
+  <div class="modal" id="modalCrearCuenta">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModal('modalCrearCuenta')">×</span>
+      <h3>Crear cuenta</h3>
+      <input type="text" id="nuevoNombre" placeholder="Tu nombre">
+      <input type="email" id="nuevoEmail" placeholder="Tu correo">
+      <input type="password" id="nuevaPassword" placeholder="Tu contraseña">
+      <input type="file" id="nuevaFoto" accept="image/*">
+      <button onclick="crearCuenta()">Crear</button>
+    </div>
+  </div>
+
+  <!-- Modal Editar Perfil -->
+  <div class="modal" id="modalEditarPerfil">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModal('modalEditarPerfil')">×</span>
+      <h3>Editar perfil</h3>
+      <input type="text" id="editarUsername" placeholder="Nuevo nombre de usuario">
+      <input type="email" id="editarEmail" placeholder="Nuevo correo">
+      <input type="password" id="editarPassword" placeholder="Nueva contraseña">
+      <input type="file" id="editarFoto" accept="image/*">
+      <!-- Campo extra: contraseña actual obligatoria si cambia correo o contraseña -->
+      <input type="password" id="editarPasswordActual" placeholder="Contraseña actual">
+      <button onclick="actualizarPerfil()">Actualizar</button>
+    </div>
+  </div>
+
+  <!-- Modal para Tetris -->
+  <div id="modalTetris" class="modal" style="display: none;">
+    <div class="modal-content" style="max-width: 800px; width: 90%; height: 600px; display: flex; flex-direction: column;">
+      <span class="close" onclick="cerrarModalTetris()">×</span>
+      <div id="contenidoTetris" style="flex: 1; overflow: hidden;"></div>
+    </div>
+  </div>
+
+  <!-- Modal para escáner -->
+  <div id="modalEscanner" class="modal" style="display: none;">
+    <div class="modal-content" style="max-width: 800px; width: 90%; height: 600px; display: flex; flex-direction: column;">
+      <span class="close" onclick="cerrarEscanner()">x</span>
+      <div id="contenidoEscanner" style="flex: 1; overflow: hidden;"></div>
+    </div>
+  </div>
+
+</body>
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
+</html>

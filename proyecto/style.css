@@ -1,0 +1,348 @@
+/* === BASE === */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+/* === MODALES (ESTILO GENERAL VERDOSO) === */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(15, 15, 15, 0.6);
+  backdrop-filter: blur(6px);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, rgba(237, 245, 240, 0.95), rgba(209, 231, 221, 0.95));
+  border-radius: 20px;
+  padding: 25px;
+  width: 90%;
+  max-width: 450px;
+  text-align: center;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.25), inset 0px 2px 8px rgba(255, 255, 255, 0.3);
+  animation: scaleIn 0.25s ease-in-out;
+  position: relative;
+  border: 1px solid rgba(45, 106, 79, 0.3);
+}
+
+.modal-content h3 {
+  margin-bottom: 18px;
+  font-size: 22px;
+  color: #1b4332;
+}
+
+/* Botón cerrar (X) */
+.modal .close {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #2d6a4f;
+  transition: 0.3s;
+}
+.modal .close:hover {
+  color: #e63946;
+  transform: scale(1.2);
+}
+
+/* === INPUTS/BOTONES EN MODALES === */
+.modal-content input[type="text"],
+.modal-content input[type="email"],
+.modal-content input[type="password"],
+.modal-content input[type="file"],
+.modal-content textarea {
+  width: 90%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #b7e4c7;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.75);
+  outline: none;
+  transition: 0.25s;
+}
+.modal-content input:focus,
+.modal-content textarea:focus {
+  border-color: #2d6a4f;
+  box-shadow: 0 0 8px rgba(45, 106, 79, 0.45);
+}
+
+/* Botones genéricos en modales */
+.modal-content button {
+  background: linear-gradient(135deg, #2d6a4f, #40916c);
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  margin-top: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.25s ease;
+}
+.modal-content button:hover {
+  background: linear-gradient(135deg, #1b4332, #2d6a4f);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.35);
+}
+
+/* === PERFIL: Login / Crear Cuenta / Editar Perfil === */
+/* Mantiene el estilo general y afina detalles para estos 3 modales */
+#modalLogin .modal-content,
+#modalCrearCuenta .modal-content,
+#modalEditarPerfil .modal-content {
+  max-width: 520px;
+  padding-top: 40px;
+}
+
+/* Inputs más compactos y consistentes */
+#modalLogin input,
+#modalCrearCuenta input,
+#modalEditarPerfil input {
+  font-size: 15px;
+}
+
+/* Archivo: que quede CLARO que es la foto de perfil */
+#nuevaFoto,
+#editarFoto {
+  display: block;
+  width: 90%;
+  margin: 10px auto;
+  cursor: pointer;
+}
+
+/* Estilo del botón del input file (texto y apariencia) */
+#nuevaFoto::file-selector-button,
+#editarFoto::file-selector-button {
+  content: "📷 Seleccionar foto de perfil";
+  background: #2d6a4f;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-right: 12px;
+  cursor: pointer;
+  transition: 0.25s ease;
+  font-weight: 600;
+}
+#nuevaFoto::file-selector-button:hover,
+#editarFoto::file-selector-button:hover {
+  background: #1b4332;
+}
+
+/* Subtexto aclaratorio (placeholder visual) */
+#nuevaFoto,
+#editarFoto {
+  font-size: 14px;          /* tamaño del nombre de archivo */
+  color: #2d6a4f;
+}
+
+/* Previsualización de avatar si la usas (opcional) */
+.avatar-preview,
+.img-perfil {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #2d6a4f;
+  display: block;
+  margin: 12px auto 6px;
+}
+
+/* === ANIMACIONES === */
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+/* === SIDEBAR === */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 220px;
+  height: 100%;
+  background-color: #2c3e50;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sidebar button,
+.sidebar a {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  text-align: left;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 1em;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+.sidebar button:hover,
+.sidebar a:hover {
+  background-color: #34495e;
+}
+
+/* === CONTENIDO PRINCIPAL === */
+.main {
+  margin-left: 240px;
+  padding: 20px;
+}
+
+/* === BANNER === */
+.banner { position: relative; }
+.banner-img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.banner-text {
+  position: absolute;
+  top: 20px; left: 30px;
+  font-size: clamp(1.5rem,5vw,3rem);
+  color: #fff;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+  font-weight: bold;
+}
+
+/* === SECCIONES === */
+.seccion { margin-top: 20px; }
+.seccion h2 { font-size: 2em; color: #2c3e50; }
+.seccion p, .seccion ul { color: #555; }
+
+/* === PRODUCTOS (cards) === */
+.productos-grid,
+.modal-productos .productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 20px;
+}
+.producto {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  background-color: #fff;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.producto:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+.producto img {
+  max-width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.producto h4 {
+  margin: 10px 0 5px;
+  font-size: 1.1em;
+  color: #333;
+}
+.producto p {
+  font-size: 0.92em;
+  color: #666;
+}
+
+/* Botón ver más */
+.ver-mas-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.ver-mas-btn:hover { background-color: #2980b9; }
+
+/* === MODAL de PRODUCTOS (arreglado y ancho grande) === */
+#modalProductos .modal-content {
+  max-width: 980px;
+  width: 95%;
+  text-align: left;
+}
+#modalProductos h3 {
+  color: #1b4332;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+#modalProductos .modal-productos {
+  max-height: 70vh;
+  overflow: auto;
+  padding-right: 6px;
+}
+#modalProductos .close {
+  top: 10px;
+  right: 14px;
+}
+
+/* === OFERTAS === */
+.oferta {
+  background-color: #ffe9e0;
+  padding: 10px;
+  border-left: 5px solid #e74c3c;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* === FORMULARIO CONTACTO === */
+.formulario-contacto input,
+.formulario-contacto textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.formulario-contacto button {
+  background-color: #27ae60;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.formulario-contacto button:hover { background-color: #219150; }
+
+/* === TETRIS === */
+iframe#tetris-container {
+  width: 100%;
+  height: 500px;
+  border: none;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+/* === BOTONES FLOTANTES === */
+.float-btn {
+  position: fixed;
+  bottom: 20px;
+  padding: 15px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.2em;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  transition: opacity 0.25s;
+}
+.cart-btn { right: 80px; background-color: #e67e22; }
+.game-btn { right: 20px; background-color: #9b59b6; }
+.float-btn:hover { opacity: 0.9; }
